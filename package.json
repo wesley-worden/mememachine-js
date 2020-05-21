@@ -1,0 +1,23 @@
+{
+  "name": "mememachine-js",
+  "version": "1.0.0",
+  "description": "a tribute but in javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PepeSilvia215/mememachine-js.git"
+  },
+  "author": "PepeSilvia215",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PepeSilvia215/mememachine-js/issues"
+  },
+  "homepage": "https://github.com/PepeSilvia215/mememachine-js#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.2",
+    "discord.js": "^12.2.0"
+  }
+}
