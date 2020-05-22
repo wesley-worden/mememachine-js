@@ -19,7 +19,7 @@ module.exports.pingPongBruhToggle = {
 module.exports.replyWithEmbeddedGif = function(channel, url) {
     const embed = new MessageEmbed().setImage(url);
     channel.send(embed);
-}
+};
 
 //loads all the commands found in the command folder
 //and adds them to the client
@@ -30,7 +30,7 @@ module.exports.loadCommands = function(client) {
         console.log(`   found command ${command.name}`);
 	    client.commands.set(command.name, command);
     }
-}
+};
 
 //checks if message contains a trigger word and if so
 //reply with a cheeky message
@@ -39,12 +39,12 @@ module.exports.shitpostIfTriggered = function(message) {
         for (trigger of triggered_shitpost.triggers) {
             if (message.content.includes(trigger)) {
                 //send shitpost
-                message.reply(triggered_shitpost.shitpost);
+                message.reply(triggered_shitpost.message);
                 //check if we should shitpost a gif
                 const embed_url = triggered_shitpost.embed_url;
                 if (embed_url != undefined) {
                     this.replyWithEmbeddedGif(message.channel, embed_url);
-                }
+                } //TODO: make shitpost part of embedded thing
             }
         }
     }

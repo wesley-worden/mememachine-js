@@ -5,15 +5,15 @@
   "triggered_shitposts": [
     {
       "triggers": ["help"],
-      "shitpost": "_\"My guess is that you've been confused for a very long time.\"_"
+      "message": "_\"My guess is that you've been confused for a very long time.\"_"
     },
     {
       "triggers": ["420", "weed"],
-      "shitpost": "dude ayy weed lmao"
+      "message": "dude ayy weed lmao"
     },
     {
       "triggers": ["asuh"],
-      "shitpost": "**a**_suh_ dude",
+      "message": "**a**_suh_ dude",
       "embed_url": "https://zippy.gfycat.com/AggressiveRadiantGnatcatcher.gif"
     }
   ]
