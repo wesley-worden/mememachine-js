@@ -1,5 +1,19 @@
 {
   "muh_sounds_bruh_path": "/home/pepesilvia/mememachine/muh_sounds_bruh/",
   "prefix" : "##",
-  "wednesday_channel": "708554699225301002"
+  "wednesday_channel": "708554699225301002",
+  "triggered_shitposts": [
+    {
+      "triggers": ["help"],
+      "shitpost": "_\"My guess is that you've been confused for a very long time.\"_"
+    },
+    {
+      "triggers": ["420", "weed"],
+      "shitpost": "dude ayy weed lmao"
+    },
+    {
+      "triggers": ["asuh"],
+      "shitpost": "**a**_suh_ dude"
+    }
+  ]
 }

@@ -22,19 +22,25 @@ client.on('ready', function () {
 });
 
 client.on('message', function (message) {
-    //ignore most messages
-    if (message.author.tag === client.user.tag || //messages from self
-        message.author.bot || //other bots
-        !message.content.startsWith(config.prefix) //not a command
-        ) { return; } //ignore message
+    //gtfo if message is from self or other bot
+    if (message.author.tag === client.user.tag || message.author.bot) { return; }
+
+    //reply with a cheeky message if appropriate
+    utils.shitpostIfTriggered(message);
+    
+    //only continue if message was a command
+    if (!message.content.startsWith(config.prefix)) { return; }
+    //get command and args
     const args = message.content.slice(config.prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
+    
     //check for command
     if (!client.commands.has(command)) { 
         console.log(`no matching command for ${command}`);
         message.reply("i don't recognize that command bruh");
         return; 
     }
+    
     //try to execute command
     try {
         client.commands.get(command).execute(message, args);
