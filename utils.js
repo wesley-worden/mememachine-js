@@ -13,7 +13,7 @@ module.exports.pingPongBruhToggle = {
 
 //TODO: bruh string phrase replacement object thingy
 
-//<--helper functions-->, 
+//<--helper functions-->
 //loads all the commands found in the command folder
 //and adds them to the client
 module.exports.loadCommands = function(client) { 
