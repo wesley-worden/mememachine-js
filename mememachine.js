@@ -1,12 +1,12 @@
 console.log('*begins screaching*');
 
-const Discord = require('discord.js');
+const {Client, Collection} = require('discord.js');
 const utils = require('./utils');
 const fs = require('fs'); //for file system stuff
 const path = require('path'); //paths for file system stuff
 
 //make the client
-const client = new Discord.Client();
+const client = new Client();
 
 console.log('loading config.json...');
 const config = require('./config.json');
@@ -14,7 +14,7 @@ console.log('loading api-keys.json...');
 const apiKeys = require('./api-keys.json');
 
 console.log('time to rustle up some commands...');
-client.commands = new Discord.Collection();
+client.commands = new Collection();
 utils.loadCommands(client);
 
 client.on('ready', function () {
