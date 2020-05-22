@@ -16,8 +16,12 @@ module.exports.pingPongBruhToggle = {
 
 //<--helper functions-->
 //sends the asuh dude gif to a channel
-module.exports.replyWithEmbeddedGif = function(channel, url) {
-    const embed = new MessageEmbed().setImage(url);
+//title is a optional argument
+module.exports.replyWithEmbeddedGif = function(channel, url, title) {
+    title = typeof title !== 'undefined' ? title : '';
+    const embed = new MessageEmbed()
+        .setImage(url)
+        .setTitle(title);
     channel.send(embed);
 };
 
@@ -35,15 +39,15 @@ module.exports.loadCommands = function(client) {
 //checks if message contains a trigger word and if so
 //reply with a cheeky message
 module.exports.shitpostIfTriggered = function(message) {
-    for (triggered_shitpost of config.triggered_shitposts) {
-        for (trigger of triggered_shitpost.triggers) {
+    for (triggeredShitpost of config.triggeredShitposts) {
+        for (trigger of triggeredShitpost.triggers) {
             if (message.content.includes(trigger)) {
                 //send shitpost
-                message.reply(triggered_shitpost.message);
+                message.channel.send(triggeredShitpost.message);
                 //check if we should shitpost a gif
-                const embed_url = triggered_shitpost.embed_url;
-                if (embed_url != undefined) {
-                    this.replyWithEmbeddedGif(message.channel, embed_url);
+                const embedUrl = triggeredShitpost.embedUrl;
+                if (embedUrl != undefined) {
+                    this.replyWithEmbeddedGif(message.channel, embedUrl);
                 } //TODO: make shitpost part of embedded thing
             }
         }

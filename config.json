@@ -1,8 +1,8 @@
 {
   "muh_sounds_bruh_path": "/home/pepesilvia/mememachine/muh_sounds_bruh/",
   "prefix" : "##",
-  "wednesday_channel": "708554699225301002",
-  "triggered_shitposts": [
+  "wednesdayChannelId": "708554699225301002",
+  "triggeredShitposts": [
     {
       "triggers": ["help"],
       "message": "_\"My guess is that you've been confused for a very long time.\"_"
@@ -14,7 +14,7 @@
     {
       "triggers": ["asuh"],
       "message": "**a**_suh_ dude",
-      "embed_url": "https://zippy.gfycat.com/AggressiveRadiantGnatcatcher.gif"
+      "embedUrl": "https://zippy.gfycat.com/AggressiveRadiantGnatcatcher.gif"
     }
   ]
 }

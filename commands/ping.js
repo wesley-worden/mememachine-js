@@ -1,8 +1,8 @@
-const utils = require('../utils');
+const { pingPongBruhToggle } = require('../utils');
 module.exports = {
 	name: 'ping',
 	description: 'you ping i pong bruh',
 	execute(message, args) {
-        message.reply(utils.pingPongBruhToggle.state ? 'pong bruh' : 'bruh, pong');
-	},
+        message.channel.send(pingPongBruhToggle.state ? 'pong bruh' : 'bruh, pong');
+	}
 };

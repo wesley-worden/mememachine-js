@@ -27,6 +27,7 @@ client.on('message', function (message) {
 
     //reply with a cheeky message if appropriate
     utils.shitpostIfTriggered(message);
+    //TODO: reply dont @ me bro when @
     
     //only continue if message was a command
     if (!message.content.startsWith(config.prefix)) { return; }
@@ -37,7 +38,7 @@ client.on('message', function (message) {
     //check for command
     if (!client.commands.has(command)) { 
         console.log(`no matching command for ${command}`);
-        message.reply("i don't recognize that command bruh");
+        message.channel.send("i don't recognize that command bruh");
         return; 
     }
     
@@ -46,9 +47,9 @@ client.on('message', function (message) {
         client.commands.get(command).execute(message, args);
     } catch (error) {
         console.error(error);
-        message.reply('sorry bruh, there was an error trying to execute that command');
+        message.channel.send('sorry bruh, there was an error trying to execute that command');
     }
 });
 
 console.log('logging in...');
-client.login(apiKeys.discord);
+client.login(apiKeys.discordToken);
