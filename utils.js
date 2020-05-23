@@ -22,7 +22,11 @@ module.exports.dispatcherWrangler = {
 //TODO: bruh string phrase replacement object thingy
 
 //<--helper functions-->
-module.exports.stop = function() {
+module.exports.getMemeFilePaths = function() {
+    return fs.readdirSync(config.muh_sounds_bruh_path).filter(file => file.endsWith(config.media_suffix));
+}
+module.exports.stopPlaying = function() {
+    console.log('dispatcherWrangler', this.dispatcherWrangler);
     this.dispatcherWrangler.dispatcher.destroy();
     this.dispatcherWrangler.playing = false;
 }

@@ -1,7 +1,7 @@
 const { muh_sounds_bruh_path, media_suffix } = require('../config.json');
 const fs = require('fs');
 const Fuse = require('fuse.js');
-const { memeDebug, dispatcherWrangler, stop } = require('../utils');
+const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
 
 //let playing = false;
 //let dispatcher = null;
@@ -50,7 +50,7 @@ module.exports = {
         }
         voiceChannel = message.member.voice.channel;
         //console.log('voiceChannel', voiceChannel);
-        const memeFilePaths = fs.readdirSync(muh_sounds_bruh_path).filter(file => file.endsWith(media_suffix));
+        const memeFilePaths = getMemeFilePaths();
         const firstArgAsMemeFilePath = args[0] + media_suffix; //assume meme trying to play is correct
         if (memeFilePaths.includes(firstArgAsMemeFilePath)) { //meme not in folder
             play(channel, voiceChannel, firstArgAsMemeFilePath);
