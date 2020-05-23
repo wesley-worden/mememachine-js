@@ -12,9 +12,20 @@ module.exports.pingPongBruhToggle = {
     }
 };
 
+//TODO: you fucking idiot you should be using classes by now this 
+//is dumb
+module.exports.dispatcherWrangler = {
+    playing: false,
+    dispatcher: null
+}
+
 //TODO: bruh string phrase replacement object thingy
 
 //<--helper functions-->
+module.exports.stop = function() {
+    this.dispatcherWrangler.dispatcher.destroy();
+    this.dispatcherWrangler.playing = false;
+}
 //sends the asuh dude gif to a channel
 //title is a optional argument
 module.exports.replyWithEmbeddedGif = function(channel, url, title) {
@@ -24,6 +35,10 @@ module.exports.replyWithEmbeddedGif = function(channel, url, title) {
         .setTitle(title);
     channel.send(embed);
 };
+
+module.exports.memeDebug = function(channel, object) {
+    channel.send(`\`\`\`\n${JSON.stringify(object)}\n\`\`\``);
+}
 
 //loads all the commands found in the command folder
 //and adds them to the client
@@ -39,9 +54,9 @@ module.exports.loadCommands = function(client) {
 //checks if message contains a trigger word and if so
 //reply with a cheeky message
 module.exports.shitpostIfTriggered = function(message) {
-    for (triggeredShitpost of config.triggeredShitposts) {
-        for (trigger of triggeredShitpost.triggers) {
-            if (message.content.includes(trigger)) {
+    for (const triggeredShitpost of config.triggeredShitposts) {
+        for (const trigger of triggeredShitpost.triggers) {
+            if (message.content.includes(trigger.toLowerCase())) {
                 //send shitpost
                 message.channel.send(triggeredShitpost.message);
                 //check if we should shitpost a gif

@@ -1,5 +1,6 @@
 {
   "muh_sounds_bruh_path": "/home/pepesilvia/mememachine/muh_sounds_bruh/",
+  "media_suffix": ".mp3",
   "prefix" : "##",
   "wednesdayChannelId": "708554699225301002",
   "gifRating": "PG-13",
@@ -17,6 +18,11 @@
       "triggers": ["asuh"],
       "message": "**a**_suh_ dude",
       "embedUrl": "https://zippy.gfycat.com/AggressiveRadiantGnatcatcher.gif"
+    },
+    {
+      "triggers": ["chris wentz,", "wentz"],
+      "message": "ugh, bruh fuck that little meatball man piece of shit",
+      "embedUrl": "https://media.giphy.com/media/M9aQOKacJYmsTStSrb/giphy.gif"
     }
   ]
 }
