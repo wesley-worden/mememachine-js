@@ -51,11 +51,13 @@ module.exports = {
         voiceChannel = message.member.voice.channel;
         //console.log('voiceChannel', voiceChannel);
         const memeFilePaths = getMemeFilePaths();
-        const firstArgAsMemeFilePath = args[0] + media_suffix; //assume meme trying to play is correct
-        if (memeFilePaths.includes(firstArgAsMemeFilePath)) { //meme not in folder
-            play(channel, voiceChannel, firstArgAsMemeFilePath);
-            return;
-        } 
+        if (args.length === 1) {
+            const firstArgAsMemeFilePath = args[0] + media_suffix; //assume meme trying to play is correct
+            if (memeFilePaths.includes(firstArgAsMemeFilePath)) { //meme not in folder
+                play(channel, voiceChannel, firstArgAsMemeFilePath);
+                return;
+            } 
+        }
         const fuseOptions = {};
         const query = args.join(' ');
         const fusedMemeFilePaths = new Fuse(memeFilePaths, fuseOptions);
