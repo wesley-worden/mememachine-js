@@ -20,7 +20,7 @@ module.exports = {
             return;
 		}
 		const memes = memeResults.map(function(memeResult) {
-			return memeResult.item;
+			return `\`${memeResult.item}\``;
 		})
 		//split into chunks
 		const chunks = [];
@@ -31,9 +31,15 @@ module.exports = {
 		}
 		//display chunks
 		channel.send('bruh were you lookin for:');
-		for (const chunk of chunks) {
-			const text = `\`\`\`\n${chunk.join('\n')}\n\`\`\``;
+		for (let chunk of chunks) {
+			const text = chunk.join('\n');
 			channel.send(text);
 		}
+
+		//fuck chunks, go line by line
+		// for (let meme of memes) {
+		// 	const text = `\`${meme}\``;
+		// 	channel.send(text);
+		// }
 	}
 };
