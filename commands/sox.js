@@ -48,7 +48,12 @@ module.exports = {
         voiceChannel = message.member.voice.channel;
         //console.log('voiceChannel', voiceChannel);
         const memeFilePaths = getMemeFilePaths();
-        const firstArgAsMemeFilePath = args.shift() + media_suffix; //assume meme trying to play is correct
+        let firstArgAsMemeFilePath = args.shift();
+        if (firstArgAsMemeFilePath.includes(media_suffix)) {
+            firstArgAsMemeFilePath = firstArgAsMemeFilePath.slice(0, -media_suffix.length);
+        }
+        firstArgAsMemeFilePath += media_suffix; //assume meme trying to play is correct
+
         if (!memeFilePaths.includes(firstArgAsMemeFilePath)) { //meme not in folder
             channel.send('first argument must be the exact meme name');
             return;

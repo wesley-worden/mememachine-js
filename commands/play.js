@@ -56,7 +56,6 @@ module.exports = {
         const memeFilePaths = getMemeFilePaths();
         if (args.length === 1) {
             if (args[0] === '1-second-of-silence') {
-                channel.send(`playing \`${args[0]}\` bruh`);
                 play(channel, voiceChannel, args[0] + media_suffix);
                 return;
             }
