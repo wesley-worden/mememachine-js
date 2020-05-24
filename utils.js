@@ -12,16 +12,54 @@ module.exports.pingPongBruhToggle = {
     }
 };
 
+module.exports.phrases = {
+    _phrases: config.bruhs,
+    _index: 0,
+    get bruh() {
+        this._index = (this._index + 1) % this._phrases.length;
+        return this._phrases[this._index];
+    }
+}
+
 //TODO: you fucking idiot you should be using classes by now this 
 //is dumb
 module.exports.dispatcherWrangler = {
     playing: false,
     dispatcher: null
-}
+};
 
 //TODO: bruh string phrase replacement object thingy
 
 //<--helper functions-->
+
+// module.exports.play = function(channel, voiceChannel, memeFilePath) {
+//     const playOptions = { volume: 1.0 };
+//     if (this.dispatcherWrangler.playing) {
+//         this.stopPlaying();
+//     }
+//     voiceChannel.join()
+//         .then(function(connection) {
+//             //console.log('connection', connection);
+//             // memeDebug(channel, connection);
+//             // if ( memeFilePath != '1-second-of-silence' + media_suffix) {
+//             //     // console.log(memeFilePath);
+//             //     channel.send(`playing \`${memeFilePath}\` bruh`);
+//             // }
+//             console.log(this);
+//             this.dispatcherWrangler.dispatcher = connection.play(config.muh_sounds_bruh_path + memeFilePath, playOptions);
+//             // dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
+//             // dispatcherWrangler.dispatcher.on('finish', () => {
+//             //     stop();
+//             // });
+//             //console.log('dispatcher', dispatcherWrangler.dispatcher);
+//             // memeDebug(channel, dispatcher);
+//         }).catch(function(error) {
+//             channel.send(`couldn't join channel bruh`);
+//             console.error(error);
+//         });
+    
+// };
+
 module.exports.getMemeFilePaths = function() {
     return fs.readdirSync(config.muh_sounds_bruh_path).filter(file => file.endsWith(config.media_suffix));
 }

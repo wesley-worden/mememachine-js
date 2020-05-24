@@ -5,8 +5,28 @@
   "searchThreshold": "0.3",
   "playThreshold" : "0.6",
   "wednesdayChannelId": "708554699225301002",
+  "mememachineChannelId": "708835021200293978",
   "gifRating": "PG-13",
   "randomGifRating": "R",
+  "bruhs": [ "bruh", "muhladdin", "brosef", "bro", "boss", "cap'n", "tchotchke", "dude" ],
+  "entranceMemes": [
+    {
+      "username": "PepeSilvia#3234",
+      "meme": "entrance-wes-2"
+    },
+    {
+      "username": "bagonmaster#0656",
+      "meme": "brooklyn-nine-nine"
+    },
+    {
+      "username": "ali.g#4893",
+      "meme": "cant-hug-every-cat"
+    },
+    {
+      "username": "piouiyutyrte#8461",
+      "meme": "omae-wa-mou-shindeiru"
+    }
+  ],
   "triggeredShitposts": [
     {
       "triggers": ["help"],

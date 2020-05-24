@@ -1,7 +1,7 @@
 const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
 const fs = require('fs');
 const Fuse = require('fuse.js');
-const { phrases, memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
+const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
 
 //let playing = false;
 //let dispatcher = null;
@@ -39,7 +39,7 @@ const play = function(channel, voiceChannel, memeFilePath) {
 
 module.exports = {
 	name: 'play',
-	description: `plays memes ${phrases.bruh}`,
+	description: `plays memes bruh`,
 	execute(message, args) {
         const channel = message.channel;
         if (args.length === 0) {

@@ -1,7 +1,7 @@
-const { phrases, muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
+const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
 const fs = require('fs');
 const Fuse = require('fuse.js');
-const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
+const { phrases, memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
 const { spawn } = require('child_process');
 
 const play = function(channel, voiceChannel, memeFilePath) {
