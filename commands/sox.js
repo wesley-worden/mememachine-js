@@ -2,14 +2,8 @@ const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config
 const fs = require('fs');
 const Fuse = require('fuse.js');
 const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
+const { spawn } = require('child_process');
 
-//let playing = false;
-//let dispatcher = null;
-//const stop = function() {
-//    dispatcher.destroy();
-//    playing = false;
-//}
-const tempMemeFilePath = '/home/pepesilvia/mememachine/muh_sounds_bruh/letmeinmp3.mp3';
 const play = function(channel, voiceChannel, memeFilePath) {
     const playOptions = { volume: 1.0 };
     if (dispatcherWrangler.playing) {
@@ -23,7 +17,7 @@ const play = function(channel, voiceChannel, memeFilePath) {
             //     // console.log(memeFilePath);
             //     channel.send(`playing \`${memeFilePath}\` bruh`);
             // }
-            dispatcherWrangler.dispatcher = connection.play(muh_sounds_bruh_path + memeFilePath, playOptions);
+            dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
             // dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
             // dispatcherWrangler.dispatcher.on('finish', () => {
             //     stop();
@@ -38,8 +32,8 @@ const play = function(channel, voiceChannel, memeFilePath) {
 };
 
 module.exports = {
-	name: 'play',
-	description: 'plays memes bruh',
+	name: 'sox',
+	description: 'plays memes with sox options bruh',
 	execute(message, args) {
         const channel = message.channel;
         if (args.length === 0) {
@@ -54,29 +48,33 @@ module.exports = {
         voiceChannel = message.member.voice.channel;
         //console.log('voiceChannel', voiceChannel);
         const memeFilePaths = getMemeFilePaths();
-        if (args.length === 1) {
-            if (args[0] === '1-second-of-silence') {
-                channel.send(`playing \`${args[0]}\` bruh`);
-                play(channel, voiceChannel, args[0] + media_suffix);
-                return;
-            }
-            const firstArgAsMemeFilePath = args[0] + media_suffix; //assume meme trying to play is correct
-            if (memeFilePaths.includes(firstArgAsMemeFilePath)) { //meme not in folder
-                channel.send(`playing \`${args[0]}\` bruh`); //why are you like this
-                play(channel, voiceChannel, firstArgAsMemeFilePath);
-                return;
-            } 
-        }
-        const fuseOptions = { threshold: playThreshold };
-        const query = args.join(' ');
-        const fusedMemeFilePaths = new Fuse(memeFilePaths, fuseOptions);
-        const memeResults = fusedMemeFilePaths.search(query);
-        if (memeResults.length === 0) {
-            channel.send('no memes found bruh');
+        const firstArgAsMemeFilePath = args.shift() + media_suffix; //assume meme trying to play is correct
+        if (!memeFilePaths.includes(firstArgAsMemeFilePath)) { //meme not in folder
+            channel.send('first argument must be the exact meme name');
             return;
         }
-        memeFilePath = memeResults[0].item;
-        channel.send(`playing \`${memeFilePath.slice(0, -media_suffix.lengt)}\` bruh`);
-        play(channel, voiceChannel, memeFilePath);
-	}
+        let soxArgs = args;
+        console.log(JSON.stringify(soxArgs));
+        soxArgs.unshift('/tmp/meme' + media_suffix);
+        soxArgs.unshift(muh_sounds_bruh_path + firstArgAsMemeFilePath);
+        //play meme with arguments
+        // const soxSpawn = spawn('ls', []);
+        const soxSpawn = spawn('sox', soxArgs);
+        soxSpawn.stdout.on("data", data => {
+            console.log(`stdout: ${data}`);
+        });
+        soxSpawn.stderr.on("data", data => {
+            console.log(`stderr: ${data}`);
+        });
+	    soxSpawn.on("error", error => {
+            console.log(`error: ${error.message}`);
+        });
+        soxSpawn.on('close', code => {
+            console.log(`sox process exited with code ${code}`);
+            if(code === 0) {
+                channel.send(`playing your soxxxed \`${firstArgAsMemeFilePath.slice(0, -media_suffix.length)}\` bruh`);
+                play(channel, voiceChannel, '/tmp/meme' + media_suffix);
+            }
+        });
+    }
 };
