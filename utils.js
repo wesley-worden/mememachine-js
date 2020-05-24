@@ -12,6 +12,10 @@ module.exports.pingPongBruhToggle = {
     }
 };
 
+module.exports.fuckThis = {
+    currentVoiceChannel: null
+}
+
 module.exports.phrases = {
     _phrases: config.bruhs,
     _index: 0,

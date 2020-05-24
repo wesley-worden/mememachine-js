@@ -1,7 +1,7 @@
 const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
 const fs = require('fs');
 const Fuse = require('fuse.js');
-const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop, phrases } = require('../utils');
+const { fuckThis, memeDebug, getMemeFilePaths, dispatcherWrangler, stop, phrases } = require('../utils');
 
 //let playing = false;
 //let dispatcher = null;
@@ -24,6 +24,7 @@ const play = function(channel, voiceChannel, memeFilePath) {
             //     channel.send(`playing \`${memeFilePath}\` bruh`);
             // }
             dispatcherWrangler.dispatcher = connection.play(muh_sounds_bruh_path + memeFilePath, playOptions);
+            fuckThis.currentVoiceChannel = voiceChannel;
             // dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
             // dispatcherWrangler.dispatcher.on('finish', () => {
             //     stop();

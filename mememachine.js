@@ -65,6 +65,7 @@ const play = function(channel, voiceChannel, memeFilePath) { //whats wrong with 
             //     channel.send(`playing \`${memeFilePath}\` bruh`);
             // }
             utils.dispatcherWrangler.dispatcher = connection.play(config.muh_sounds_bruh_path + memeFilePath, playOptions);
+            utils.fuckThis.currentVoiceChannel = voiceChannel;
             // dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
             // dispatcherWrangler.dispatcher.on('finish', () => {
             //     stop();
@@ -106,19 +107,30 @@ client.on('voiceStateUpdate', (oldVoiceState, newVoiceState) => {
             }
         }
     } else if (newUserChannel === null) {
-        //cant really do anything useful since oldUserChannel = null;
-        //user left a voice channel
+        // cant really do anything useful since oldUserChannel = null;
+        // user left a voice channel
         // console.log('left a voice channel');
-        // client.channels.fetch(config.mememachineChannelId)
-        //     .then(function(channel) {
-        //         // console.log(entranceMeme.meme + config.media_suffix);
-        //         play(channel, newUserChannel, 'dva-see-ya' + config.media_suffix);
-        //     }).catch(function(error) {
-        //         console.log('error fetching mememachine channel')
-        //         console.error(error.message);
-        //     });
+        client.channels.fetch(config.mememachineChannelId)
+            .then(function(channel) {
+                // console.log(entranceMeme.meme + config.media_suffix);
+                // console.log(utils.fuckThis.currentVoiceChannel.members.array);
+                const members = utils.fuckThis.currentVoiceChannel.members.map(member => (member));
+                // console.log(members.length);
+                //i have no idea why <= 1 works instaed of 0 and/or 1
+                if (members.length <= 1 && utils.fuckThis.currentVoiceChannel !== null) {
+                    utils.fuckThis.currentVoiceChannel.leave();
+                } else {
+                    play(channel, utils.fuckThis.currentVoiceChannel, 'dva-see-ya' + config.media_suffix); 
+                }
+            }).catch(function(error) {
+                console.log('error fetching mememachine channel')
+                console.error(error.message);
+            });
+        // console.log(utils.fuckThis.currentVoiceChannel);
+
     }
 });
 
 console.log('logging in...');
 client.login(apiKeys.discordToken);
+
