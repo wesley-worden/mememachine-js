@@ -11,7 +11,7 @@ module.exports = {
 		}
 		const query = args.join(' ');
 		const memeFilePaths = getMemeFilePaths();
-		const fuseOptions ={ threshold: 0.3 };
+		const fuseOptions ={ threshold: 0.4 };
 		const fusedMemeFilePaths = new Fuse(memeFilePaths, fuseOptions);
         const memeResults = fusedMemeFilePaths.search(query);
         if (memeResults.length === 0) {

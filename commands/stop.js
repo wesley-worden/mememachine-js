@@ -3,6 +3,6 @@ module.exports = {
 	name: 'stop',
 	description: 'stops the memes from playing bruh',
 	execute(message, args) {
-		stopPlaying();
+		message.client.commands.get('play').execute(message, [ '1-second-of-silence' ]);
 	}
 };

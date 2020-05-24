@@ -13,13 +13,16 @@ const tempMemeFilePath = '/home/pepesilvia/mememachine/muh_sounds_bruh/letmeinmp
 const play = function(channel, voiceChannel, memeFilePath) {
     const playOptions = { volume: 1.0 };
     if (dispatcherWrangler.playing) {
-        stop();
+        stopPlaying();
     }
     voiceChannel.join()
         .then(function(connection) {
             //console.log('connection', connection);
             // memeDebug(channel, connection);
-            channel.send(`playing \`${memeFilePath}\` bruh`);
+            if ( memeFilePath != '1-second-of-silence' + media_suffix) {
+                console.log(memeFilePath);
+                channel.send(`playing \`${memeFilePath}\` bruh`);
+            }
             dispatcherWrangler.dispatcher = connection.play(muh_sounds_bruh_path + memeFilePath, playOptions);
             // dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
             // dispatcherWrangler.dispatcher.on('finish', () => {
@@ -52,6 +55,10 @@ module.exports = {
         //console.log('voiceChannel', voiceChannel);
         const memeFilePaths = getMemeFilePaths();
         if (args.length === 1) {
+            if (args[0] === '1-second-of-silence') {
+                play(channel, voiceChannel, args[0] + media_suffix);
+                return;
+            }
             const firstArgAsMemeFilePath = args[0] + media_suffix; //assume meme trying to play is correct
             if (memeFilePaths.includes(firstArgAsMemeFilePath)) { //meme not in folder
                 play(channel, voiceChannel, firstArgAsMemeFilePath);
