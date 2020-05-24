@@ -1,7 +1,7 @@
 const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
 const fs = require('fs');
 const Fuse = require('fuse.js');
-const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
+const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop, phrases } = require('../utils');
 
 //let playing = false;
 //let dispatcher = null;
