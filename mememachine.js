@@ -88,12 +88,16 @@ client.on('voiceStateUpdate', (oldVoiceState, newVoiceState) => {
         // console.log('entered voice channel');
         const username = newVoiceState.member.user.tag
         // console.log(username);
-        for (entranceMeme of config.entranceMemes) {
+        // console.log(config.entranceMemes);
+        // for (entranceMeme of config.entranceMemes) {
+        for (let index = config.entranceMemes.length - 1; index >= 0; index--) { //why the fuck does this work
+            const entranceMeme = config.entranceMemes[index];
             if (entranceMeme.username === username) {
                 // console.log('matched user name!');
                 client.channels.fetch(config.mememachineChannelId)
                     .then(function(channel) {
                         // console.log(entranceMeme.meme + config.media_suffix);
+                        // console.log(entranceMeme.meme);
                         play(channel, newUserChannel, entranceMeme.meme + config.media_suffix);
                     }).catch(function(error) {
                         console.log('error fetching mememachine channel')
