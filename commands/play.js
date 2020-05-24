@@ -1,4 +1,4 @@
-const { muh_sounds_bruh_path, media_suffix } = require('../config.json');
+const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
 const fs = require('fs');
 const Fuse = require('fuse.js');
 const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
@@ -65,7 +65,7 @@ module.exports = {
                 return;
             } 
         }
-        const fuseOptions = {};
+        const fuseOptions = { threshold: playThreshold };
         const query = args.join(' ');
         const fusedMemeFilePaths = new Fuse(memeFilePaths, fuseOptions);
         const memeResults = fusedMemeFilePaths.search(query);

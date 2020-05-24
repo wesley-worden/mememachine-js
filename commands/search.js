@@ -1,5 +1,6 @@
 const { getMemeFilePaths } = require('../utils');
 const Fuse = require('fuse.js');
+const { searchThreshold } = require('../config.json');
 module.exports = {
 	name: 'search',
 	description: 'searches for memes bruh',
@@ -11,7 +12,7 @@ module.exports = {
 		}
 		const query = args.join(' ');
 		const memeFilePaths = getMemeFilePaths();
-		const fuseOptions ={ threshold: 0.4 };
+		const fuseOptions ={ threshold: searchThreshold };
 		const fusedMemeFilePaths = new Fuse(memeFilePaths, fuseOptions);
         const memeResults = fusedMemeFilePaths.search(query);
         if (memeResults.length === 0) {

@@ -2,6 +2,8 @@
   "muh_sounds_bruh_path": "/home/pepesilvia/mememachine/muh_sounds_bruh/",
   "media_suffix": ".mp3",
   "prefix" : "##",
+  "searchThreshold": "0.3",
+  "playThreshold" : "0.6",
   "wednesdayChannelId": "708554699225301002",
   "gifRating": "PG-13",
   "randomGifRating": "R",
