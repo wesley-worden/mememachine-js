@@ -51,56 +51,20 @@ client.on('message', function (message) {
     }
 });
 
-const play = function(channel, voiceChannel, memeFilePath) { //whats wrong with me
-    const playOptions = { volume: 1.0 };
-    if (utils.dispatcherWrangler.playing) {
-        stopPlaying();
-    }
-    voiceChannel.join()
-        .then(function(connection) {
-            //console.log('connection', connection);
-            // memeDebug(channel, connection);
-            // if ( memeFilePath != '1-second-of-silence' + media_suffix) {
-            //     // console.log(memeFilePath);
-            //     channel.send(`playing \`${memeFilePath}\` bruh`);
-            // }
-            utils.dispatcherWrangler.dispatcher = connection.play(config.muh_sounds_bruh_path + memeFilePath, playOptions);
-            utils.fuckThis.currentVoiceChannel = voiceChannel;
-            // dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
-            // dispatcherWrangler.dispatcher.on('finish', () => {
-            //     stop();
-            // });
-            //console.log('dispatcher', dispatcherWrangler.dispatcher);
-            // memeDebug(channel, dispatcher);
-        }).catch(function(error) {
-            channel.send(`couldn't join channel ${utils.phrases.bruh}`);
-            console.error(error);
-        });
-    
-};
-
 client.on('voiceStateUpdate', (oldVoiceState, newVoiceState) => {
     const newUserChannel = newVoiceState.channel;
     const oldUserChannel = oldVoiceState.channel;
-    // console.log('new: ', newUserChannel);
-    // console.log('old: ', oldUserChannel)
     if (oldUserChannel === null && newUserChannel !== undefined) {
         //user joined a voice channel
-        // console.log('entered voice channel');
         const username = newVoiceState.member.user.tag
-        // console.log(username);
-        // console.log(config.entranceMemes);
         // for (entranceMeme of config.entranceMemes) {
         for (let index = config.entranceMemes.length - 1; index >= 0; index--) { //why the fuck does this work
             const entranceMeme = config.entranceMemes[index];
             const meme = entranceMeme.memes[utils.randomIndex(entranceMeme.memes.length - 1)];
             if (entranceMeme.username === username) {
-                // console.log('matched user name!');
                 client.channels.fetch(config.mememachineChannelId)
                     .then(function(channel) {
-                        // console.log(entranceMeme.meme + config.media_suffix);
-                        // console.log(entranceMeme.meme);
-                        play(channel, newUserChannel, meme + config.media_suffix);
+                        utils.play(channel, newUserChannel, meme + config.media_suffix);
                     }).catch(function(error) {
                         console.log('error fetching mememachine channel')
                         console.error(error.message);
@@ -108,33 +72,25 @@ client.on('voiceStateUpdate', (oldVoiceState, newVoiceState) => {
             }
         }
     } else if (newUserChannel === null) {
-        // cant really do anything useful since oldUserChannel = null;
         // user left a voice channel
-        // console.log('left a voice channel');
         client.channels.fetch(config.mememachineChannelId)
             .then(function(channel) {
-                // console.log(entranceMeme.meme + config.media_suffix);
-                // console.log(utils.fuckThis.currentVoiceChannel.members.array);
-                if(utils.fuckThis.currentVoiceChannel !== null) {
-                    const members = utils.fuckThis.currentVoiceChannel.members.map(member => (member));
-                    // console.log(members.length);
+                if(utils.voiceWrangler.currentVoiceChannel !== null) {
+                    const members = utils.voiceWrangler.currentVoiceChannel.members.map(member => (member));
                     //i have no idea why <= 1 works instaed of 0 and/or 1
-                    if (members.length <= 1 && utils.fuckThis.currentVoiceChannel !== null) {
-                        utils.fuckThis.currentVoiceChannel.leave();
-                        utils.fuckThis.currentVoiceChannel = null;
+                    if (members.length <= 1 && utils.voiceWrangler.currentVoiceChannel !== null) {
+                        utils.voiceWrangler.currentVoiceChannel.leave();
+                        utils.voiceWrangler.currentVoiceChannel = null;
                     } else {
-                        play(channel, utils.fuckThis.currentVoiceChannel, 'dva-see-ya' + config.media_suffix); 
+                        utils.play(channel, utils.voiceWrangler.currentVoiceChannel, 'dva-see-ya' + config.media_suffix); 
                     }
                 }
             }).catch(function(error) {
                 console.log('error fetching mememachine channel')
                 console.error(error.message);
             });
-        // console.log(utils.fuckThis.currentVoiceChannel);
-
     }
 });
 
 console.log('logging in...');
 client.login(apiKeys.discordToken);
-

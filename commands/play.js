@@ -1,42 +1,6 @@
-const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
-const fs = require('fs');
+const { media_suffix, playThreshold } = require('../config.json');
 const Fuse = require('fuse.js');
-const { fuckThis, memeDebug, getMemeFilePaths, dispatcherWrangler, stop, phrases } = require('../utils');
-
-//let playing = false;
-//let dispatcher = null;
-//const stop = function() {
-//    dispatcher.destroy();
-//    playing = false;
-//}
-const tempMemeFilePath = '/home/pepesilvia/mememachine/muh_sounds_bruh/letmeinmp3.mp3';
-const play = function(channel, voiceChannel, memeFilePath) {
-    const playOptions = { volume: 1.0 };
-    if (dispatcherWrangler.playing) {
-        stopPlaying();
-    }
-    voiceChannel.join()
-        .then(function(connection) {
-            //console.log('connection', connection);
-            // memeDebug(channel, connection);
-            // if ( memeFilePath != '1-second-of-silence' + media_suffix) {
-            //     // console.log(memeFilePath);
-            //     channel.send(`playing \`${memeFilePath}\` bruh`);
-            // }
-            dispatcherWrangler.dispatcher = connection.play(muh_sounds_bruh_path + memeFilePath, playOptions);
-            fuckThis.currentVoiceChannel = voiceChannel;
-            // dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
-            // dispatcherWrangler.dispatcher.on('finish', () => {
-            //     stop();
-            // });
-            //console.log('dispatcher', dispatcherWrangler.dispatcher);
-            // memeDebug(channel, dispatcher);
-        }).catch(function(error) {
-            channel.send(`couldn't join channel ${phrases.bruh}`);
-            console.error(error);
-        });
-    
-};
+const { play, getMemeFilePaths, phrases } = require('../utils');
 
 module.exports = {
 	name: 'play',

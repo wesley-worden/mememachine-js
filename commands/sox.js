@@ -1,36 +1,6 @@
 const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
-const fs = require('fs');
-const Fuse = require('fuse.js');
-const { phrases, fuckThis, memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
+const { play, phrases, memeDebug, getMemeFilePaths, stop } = require('../utils');
 const { spawn } = require('child_process');
-
-const play = function(channel, voiceChannel, memeFilePath) {
-    const playOptions = { volume: 1.0 };
-    if (dispatcherWrangler.playing) {
-        stopPlaying();
-    }
-    voiceChannel.join()
-        .then(function(connection) {
-            //console.log('connection', connection);
-            // memeDebug(channel, connection);
-            // if ( memeFilePath != '1-second-of-silence' + media_suffix) {
-            //     // console.log(memeFilePath);
-            //     channel.send(`playing \`${memeFilePath}\` bruh`);
-            // }
-            dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
-            fuckThis.currentVoiceChannel = voiceChannel;
-            // dispatcherWrangler.dispatcher = connection.play(memeFilePath, playOptions);
-            // dispatcherWrangler.dispatcher.on('finish', () => {
-            //     stop();
-            // });
-            //console.log('dispatcher', dispatcherWrangler.dispatcher);
-            // memeDebug(channel, dispatcher);
-        }).catch(function(error) {
-            channel.send(`couldn't join channel ${phrases.bruh}`);
-            console.error(error);
-        });
-    
-};
 
 module.exports = {
 	name: 'sox',
