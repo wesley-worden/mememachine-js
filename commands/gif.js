@@ -38,7 +38,12 @@ module.exports = {
             throw new Error('giphy request failed');
         })
         .then(function(jsonResponse) {
-            const gifEmbedUrl = jsonResponse['data'][0]['images']['original']['url'];
+            const data = jsonResponse['data'];
+            if (data.length === 0) {
+                message.channel.send(`no matching gif results ${phrases.bruh}`);
+                return
+            }
+            const gifEmbedUrl = data[0]['images']['original']['url'];
             //now try to get channel
             message.client.channels.fetch(wednesdayChannelId)
             .then(function (wednesdayChannel) {

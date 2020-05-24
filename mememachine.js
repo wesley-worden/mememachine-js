@@ -114,13 +114,16 @@ client.on('voiceStateUpdate', (oldVoiceState, newVoiceState) => {
             .then(function(channel) {
                 // console.log(entranceMeme.meme + config.media_suffix);
                 // console.log(utils.fuckThis.currentVoiceChannel.members.array);
-                const members = utils.fuckThis.currentVoiceChannel.members.map(member => (member));
-                // console.log(members.length);
-                //i have no idea why <= 1 works instaed of 0 and/or 1
-                if (members.length <= 1 && utils.fuckThis.currentVoiceChannel !== null) {
-                    utils.fuckThis.currentVoiceChannel.leave();
-                } else {
-                    play(channel, utils.fuckThis.currentVoiceChannel, 'dva-see-ya' + config.media_suffix); 
+                if(utils.fuckThis.currentVoiceChannel !== null) {
+                    const members = utils.fuckThis.currentVoiceChannel.members.map(member => (member));
+                    // console.log(members.length);
+                    //i have no idea why <= 1 works instaed of 0 and/or 1
+                    if (members.length <= 1 && utils.fuckThis.currentVoiceChannel !== null) {
+                        utils.fuckThis.currentVoiceChannel.leave();
+                        utils.fuckThis.currentVoiceChannel = null;
+                    } else {
+                        play(channel, utils.fuckThis.currentVoiceChannel, 'dva-see-ya' + config.media_suffix); 
+                    }
                 }
             }).catch(function(error) {
                 console.log('error fetching mememachine channel')
