@@ -1,7 +1,7 @@
 const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
 const fs = require('fs');
 const Fuse = require('fuse.js');
-const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
+const { phrases, memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
 
 //let playing = false;
 //let dispatcher = null;
@@ -31,7 +31,7 @@ const play = function(channel, voiceChannel, memeFilePath) {
             //console.log('dispatcher', dispatcherWrangler.dispatcher);
             // memeDebug(channel, dispatcher);
         }).catch(function(error) {
-            channel.send("couldn't join channel bruh");
+            channel.send(`couldn't join channel ${phrases.bruh}`);
             console.error(error);
         });
     
@@ -39,16 +39,16 @@ const play = function(channel, voiceChannel, memeFilePath) {
 
 module.exports = {
 	name: 'play',
-	description: 'plays memes bruh',
+	description: `plays memes ${phrases.bruh}`,
 	execute(message, args) {
         const channel = message.channel;
         if (args.length === 0) {
-            channel.send('you gotta specify a meme bruh');
+            channel.send(`you gotta specify a meme ${phrases.bruh}`);
             return;
         }
         let voiceChannel = null;
         if(!message.member.voice) {
-            channel.send('you gotta be in a voice channel first bruh');
+            channel.send(`you gotta be in a voice channel first ${phrases.bruh}`);
             return;
         }
         voiceChannel = message.member.voice.channel;
@@ -61,7 +61,7 @@ module.exports = {
             }
             const firstArgAsMemeFilePath = args[0] + media_suffix; //assume meme trying to play is correct
             if (memeFilePaths.includes(firstArgAsMemeFilePath)) { //meme not in folder
-                channel.send(`playing \`${args[0]}\` bruh`); //why are you like this
+                channel.send(`playing \`${args[0]}\` ${phrases.bruh}`); //why are you like this
                 play(channel, voiceChannel, firstArgAsMemeFilePath);
                 return;
             } 
@@ -71,11 +71,11 @@ module.exports = {
         const fusedMemeFilePaths = new Fuse(memeFilePaths, fuseOptions);
         const memeResults = fusedMemeFilePaths.search(query);
         if (memeResults.length === 0) {
-            channel.send('no memes found bruh');
+            channel.send(`no memes found ${phrases.bruh}`);
             return;
         }
         memeFilePath = memeResults[0].item;
-        channel.send(`playing \`${memeFilePath.slice(0, -media_suffix.length)}\` bruh`);
+        channel.send(`playing \`${memeFilePath.slice(0, -media_suffix.length)}\` ${phrases.bruh} `);
         play(channel, voiceChannel, memeFilePath);
 	}
 };

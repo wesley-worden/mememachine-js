@@ -1,4 +1,4 @@
-const { muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
+const { phrases, muh_sounds_bruh_path, media_suffix, playThreshold } = require('../config.json');
 const fs = require('fs');
 const Fuse = require('fuse.js');
 const { memeDebug, getMemeFilePaths, dispatcherWrangler, stop } = require('../utils');
@@ -25,7 +25,7 @@ const play = function(channel, voiceChannel, memeFilePath) {
             //console.log('dispatcher', dispatcherWrangler.dispatcher);
             // memeDebug(channel, dispatcher);
         }).catch(function(error) {
-            channel.send("couldn't join channel bruh");
+            channel.send(`couldn't join channel ${phrases.bruh}`);
             console.error(error);
         });
     
@@ -33,16 +33,16 @@ const play = function(channel, voiceChannel, memeFilePath) {
 
 module.exports = {
 	name: 'sox',
-	description: 'plays memes with sox options bruh',
+	description: `plays memes with sox options bruh`,
 	execute(message, args) {
         const channel = message.channel;
         if (args.length === 0) {
-            channel.send('you gotta specify a meme bruh');
+            channel.send(`you gotta specify a meme ${phrases.bruh}`);
             return;
         }
         let voiceChannel = null;
         if(!message.member.voice) {
-            channel.send('you gotta be in a voice channel first bruh');
+            channel.send(`you gotta be in a voice channel first ${phrases.bruh}`);
             return;
         }
         voiceChannel = message.member.voice.channel;
@@ -77,7 +77,7 @@ module.exports = {
         soxSpawn.on('close', code => {
             console.log(`sox process exited with code ${code}`);
             if(code === 0) {
-                channel.send(`playing your soxxxed \`${firstArgAsMemeFilePath.slice(0, -media_suffix.length)}\` bruh`);
+                channel.send(`playing your soxxxed \`${firstArgAsMemeFilePath.slice(0, -media_suffix.length)}\` ${phrases.bruh}`);
                 play(channel, voiceChannel, '/tmp/meme' + media_suffix);
             }
         });

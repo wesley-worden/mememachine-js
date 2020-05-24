@@ -4,7 +4,7 @@ const { replyWithEmbeddedGif } = require('../utils');
 const fetch = require('node-fetch');
 
 const showGifError = function(channel, error) {
-   channel.send('bruh i wanted to find a gif for you but something went bad');
+   channel.send(`${phrases.bruh} i wanted to find a gif for you but something went bad`);
    console.error(error);
 }
 

@@ -1,13 +1,13 @@
-const { getMemeFilePaths } = require('../utils');
+const { getMemeFilePaths, phrases } = require('../utils');
 const Fuse = require('fuse.js');
 const { searchThreshold } = require('../config.json');
 module.exports = {
 	name: 'search',
-	description: 'searches for memes bruh',
+	description: `searches for memes ${phrases.bruh}`,
 	execute(message, args) {
 		const channel = message.channel;
         if (args.length === 0) {
-            channel.send('you gotta specify a search query bruh');
+            channel.send(`you gotta specify a search query ${phrases.bruh}`);
             return;
 		}
 		const query = args.join(' ');
@@ -16,7 +16,7 @@ module.exports = {
 		const fusedMemeFilePaths = new Fuse(memeFilePaths, fuseOptions);
         const memeResults = fusedMemeFilePaths.search(query);
         if (memeResults.length === 0) {
-            channel.send('no memes found bruh');
+            channel.send(`no memes found ${phrases.bruh}`);
             return;
 		}
 		const memes = memeResults.map(function(memeResult) {
@@ -30,7 +30,7 @@ module.exports = {
 			chunks.push(chunk);
 		}
 		//display chunks
-		channel.send('bruh were you lookin for:');
+		channel.send(`${phrases.bruh} were you lookin for:`);
 		for (let chunk of chunks) {
 			const text = chunk.join('\n');
 			channel.send(text);

@@ -1,16 +1,16 @@
 const { giphyKey } = require('../api-keys.json');
 const { wednesdayChannelId, gifRating } = require('../config.json'); //wednesday cars channel id
-const { replyWithEmbeddedGif } = require('../utils');
+const { replyWithEmbeddedGif, phrases } = require('../utils');
 const fetch = require('node-fetch');
 
 const showGifError = function(channel, error) {
-   channel.send('bruh i wanted to find a gif for you but something went bad');
+   channel.send(`${phrases.bruh} i wanted to find a gif for you but something went bad`);
    console.error(error);
 }
 
 module.exports = {
 	name: 'gif',
-	description: 'posts gifs from giphy bruh',
+	description: `posts gifs from giphy ${phrases.bruh}`,
 	execute: function(message, args) {
         if (args.length === 0) {
             //message.channel.send('bruh i dont gif empty strings');
