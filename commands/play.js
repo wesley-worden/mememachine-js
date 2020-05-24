@@ -75,7 +75,7 @@ module.exports = {
             return;
         }
         memeFilePath = memeResults[0].item;
-        channel.send(`playing \`${memeFilePath.slice(0, -media_suffix.lengt)}\` bruh`);
+        channel.send(`playing \`${memeFilePath.slice(0, -media_suffix.length)}\` bruh`);
         play(channel, voiceChannel, memeFilePath);
 	}
 };
