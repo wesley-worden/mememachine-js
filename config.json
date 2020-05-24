@@ -12,47 +12,47 @@
   "entranceMemes": [
     {
       "username": "PepeSilvia#3234",
-      "meme": "entrance-wes-2"
+      "memes": ["entrance-wes-1", "entrance-wes-2", "entrance-wes-3", "entrance-wes"]
     },
     {
       "username": "bagonmaster#0656",
-      "meme": "brooklyn-nine-nine"
+      "memes": ["brooklyn-nine-nine"]
     },
     {
-      "username": "ali.g#4893",
-      "meme": "cant-hug-every-cat"
+      "username": ["ali.g#4893"],
+      "memes": ["cant-hug-every-cat"]
     },
     {
-      "username": "piouiyutyrte#8461",
-      "meme": "omae-wa-mou-shindeiru"
+      "username": ["piouiyutyrte#8461"],
+      "memes": ["omae-wa-mou-shindeiru"]
     },
     {
-      "username": "Badbrakfast#3316",
-      "meme": "jesus-christ-we-love-you-god"
+      "username": ["Badbrakfast#3316"],
+      "memes": ["jesus-christ-we-love-you-god"]
     },
     {
-      "username": "tomcat0071#6304",
-      "meme": "you-are-my-dad"
+      "username": ["tomcat0071#6304"],
+      "memes": ["you-are-my-dad"]
     },
     {
-      "username": "fedlimid#6192",
-      "meme": "entrance-nick"
+      "username": ["fedlimid#6192"],
+      "memes": ["entrance-nick"]
     },
     {
-      "username": "Horsetaur#2413",
-      "meme": ""
+      "username": ["Horsetaur#2413"],
+      "memes": ["i-have-the-power-of-god-and-anime-on-my-side"]
     },
     {
-      "username": "kfh#6028",
-      "meme": "entrance-kyle"
+      "username": ["kfh#6028"],
+      "memes": ["entrance-kyle"]
     },
     {
-      "username": "kfh#1719",
-      "meme": "entrance-kyle"
+      "username": ["kfh#1719"],
+      "memes": ["entrance-kyle"]
     },
     {
-      "username": "Crazychicken563#8168",
-      "meme": "entrance-seva"
+      "username": ["Crazychicken563#8168"],
+      "memes": ["entrance-seva"]
     }
   ],
   "triggeredShitposts": [

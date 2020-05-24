@@ -35,7 +35,9 @@ module.exports.dispatcherWrangler = {
 //TODO: bruh string phrase replacement object thingy
 
 //<--helper functions-->
-
+module.exports.randomIndex = function(max) {
+    return Math.floor(Math.random() * (max + 1));
+}
 // module.exports.play = function(channel, voiceChannel, memeFilePath) {
 //     const playOptions = { volume: 1.0 };
 //     if (this.dispatcherWrangler.playing) {
